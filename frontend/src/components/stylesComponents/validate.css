@@ -1,0 +1,26 @@
+.validate{
+    position: relative;
+    background-color:rgb(230, 111, 111);
+    border-radius: 2px;
+    width: 80%;
+    height: 20px;
+    left: -8%;
+    z-index: 1;
+}
+.validateArrow{
+    position: absolute;
+    background-color:rgb(230, 111, 111);
+    width: 10px;
+    height: 10px;
+    top: -5px;
+    left: 15px;
+    transform: rotate(45deg);
+}
+.validateText{
+    position: relative;
+    display: flex;
+    padding-left: 10px;
+    color: rgb(1, 1, 1);
+    font-size: 14px;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}

@@ -1,0 +1,604 @@
+.homeContainer{
+    background: linear-gradient(-20deg, #f0f0f0,  #f7f7f7);
+    height: 860px;
+    width: 96vw;
+    margin: auto;
+    margin-top: 40px;
+    box-shadow: 2px 2px 7px;
+    overflow: hidden;
+}
+.homeContainer header{
+    background-color: white;
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+}
+.homeContainer header div{
+    display: flex;
+    margin-left: 55px;
+    align-items: center;
+    width: 600px;
+    height: 100px;
+}
+.homeContainer header div i{
+    font-size: 35px;
+    color: #5f5f5f;
+    margin-top: 40px;
+    padding-bottom: 10px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: normal;
+    border-bottom: solid 2px orange;
+}
+.nameIcon{
+    font-size: 45px;
+    margin-left: 10px;
+    margin-right: 10px;
+    transition: ease-in-out 0.2s;
+    cursor: pointer;
+}
+.nameIcon :hover{
+  transition: ease-in-out 0.2s;
+  color: orange;
+}
+
+.nameIconOnClick{
+    font-size: 47px;
+    margin-left: 10px;
+    margin-right: 10px;
+    color: orange;
+    transition: ease-in-out 1ms;
+}
+
+.settingContainer{
+    position: absolute;
+    background-color: #5b5b5be3;
+    width: 200px;
+    margin-top: 100px;
+    margin-left: 55px;
+    z-index: 9;
+  }
+  .settingContainer button{
+    width: 190px;
+    margin:5px;
+    height: 40px;
+    background-color: rgba(133, 133, 133, 0.689);
+    color: white;
+    border: 0;
+    cursor: pointer;
+    transition: ease-in-out 0.3s;
+  }
+  .settingContainer button:hover{
+    width: 190px;
+    margin:5px;
+    height: 40px;
+    background-color: orange;
+    color: white;
+    border: 0;
+    cursor: pointer;
+    transition: ease-in-out 0.3s;
+  }
+
+
+  
+  .addCurrContainer{
+    position: absolute;
+    background-color: #5b5b5be3;
+    height: 60px;
+    width: 200px;
+    margin-top: 150px;
+    margin-left: 256px;
+    z-index: 9;
+    display: flex;
+  }
+  
+  .addCurrContainer button{
+    width: 90px;
+    height: 40px;
+    margin:10px;
+    justify-content: center;
+    background-color: rgba(133, 133, 133, 0.689);
+    color: white;
+    border: 0;
+    cursor: pointer;
+    transition: ease-in-out 0.3s;
+  }
+  .addCurrContainer button:hover{
+    width: 90px;
+    height: 40px;
+    margin:10px;
+    background-color: orange;
+    color: white;
+    border: 0;
+    cursor: pointer;
+    transition: ease-in-out 0.3s;
+  }
+  .addCurrContainer input{
+    width: 80px;
+    height: 40px;
+    margin:10px;
+    font-size: 20px;
+    text-align: center;
+    background-color: rgba(237, 237, 237, 0.927);
+    border: 0;
+    border-radius: 2px;
+  }
+
+
+
+
+
+  .addWIncomingContainer{
+    position: absolute;
+    background-color: #5b5b5be3;
+    height: 60px;
+    width: 200px;
+    margin-top: 200px;
+    margin-left: 256px;
+    z-index: 9;
+    display: flex;
+  }
+  
+  .addWIncomingContainer button{
+    width: 90px;
+    height: 40px;
+    margin:10px;
+    justify-content: center;
+    background-color: rgba(133, 133, 133, 0.689);
+    color: white;
+    border: 0;
+    cursor: pointer;
+    transition: ease-in-out 0.3s;
+  }
+  .addWIncomingContainer button:hover{
+    width: 90px;
+    height: 40px;
+    margin:10px;
+    background-color: orange;
+    color: white;
+    border: 0;
+    cursor: pointer;
+    transition: ease-in-out 0.3s;
+  }
+  .addWIncomingContainer input{
+    width: 80px;
+    height: 40px;
+    margin:10px;
+    font-size: 20px;
+    text-align: center;
+    background-color: rgba(237, 237, 237, 0.927);
+    border: 0;
+    border-radius: 2px;
+  }
+
+
+
+
+
+  .addEIncomingContainer{
+    position: absolute;
+    background-color: #5b5b5be3;
+    height: 60px;
+    width: 200px;
+    margin-top: 250px;
+    margin-left: 256px;
+    z-index: 9;
+    display: flex;
+  }
+  
+  .addEIncomingContainer button{
+    width: 90px;
+    height: 40px;
+    margin:10px;
+    justify-content: center;
+    background-color: rgba(133, 133, 133, 0.689);
+    color: white;
+    border: 0;
+    cursor: pointer;
+    transition: ease-in-out 0.3s;
+  }
+  .addEIncomingContainer button:hover{
+    width: 90px;
+    height: 40px;
+    margin:10px;
+    background-color: orange;
+    color: white;
+    border: 0;
+    cursor: pointer;
+    transition: ease-in-out 0.3s;
+  }
+  .addEIncomingContainer input{
+    width: 80px;
+    height: 40px;
+    margin:10px;
+    font-size: 20px;
+    text-align: center;
+    background-color: rgba(237, 237, 237, 0.927);
+    border: 0;
+    border-radius: 2px;
+  }
+
+
+
+
+
+  .addSIncomingContainer{
+    position: absolute;
+    background-color: #5b5b5be3;
+    height: 60px;
+    width: 200px;
+    margin-top: 300px;
+    margin-left: 256px;
+    z-index: 9;
+    display: flex;
+  }
+  
+  .addSIncomingContainer button{
+    width: 90px;
+    height: 40px;
+    margin:10px;
+    justify-content: center;
+    background-color: rgba(133, 133, 133, 0.689);
+    color: white;
+    border: 0;
+    cursor: pointer;
+    transition: ease-in-out 0.3s;
+  }
+  .addSIncomingContainer button:hover{
+    width: 90px;
+    height: 40px;
+    margin:10px;
+    background-color: orange;
+    color: white;
+    border: 0;
+    cursor: pointer;
+    transition: ease-in-out 0.3s;
+  }
+  .addSIncomingContainer input{
+    width: 80px;
+    height: 40px;
+    margin:10px;
+    font-size: 20px;
+    text-align: center;
+    background-color: rgba(237, 237, 237, 0.927);
+    border: 0;
+    border-radius: 2px;
+  }
+
+
+
+.details{
+    margin-top: 30px;
+    margin-right: 60px;
+    width: 1500px;
+    display: flex;
+    justify-content: space-between;
+}
+.details p{
+    padding-left: 5px;
+    padding-right: 5px;
+    height: 30px;
+    font-size: 16px;
+    color: #5f5f5f;
+    background-color: #d6d6d65e;
+    border: 0;
+    border-radius: 2px;
+    margin-top: 25px;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+}
+.selectedFilter{
+    padding-left: 2px;
+    width: 105px;
+    height: 30px;
+    font-size: 14px;
+    color: #5f5f5f;
+    background-color: #d6d6d65e;
+    border: 0;
+    border-radius: 2px;
+    margin-top: 25px;
+    margin-left: 10px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.selectedCurr{
+    padding-left: 10px;
+    width: 60px;
+    height: 30px;
+    font-size: 15px;
+    color: #5f5f5f;
+    background-color: #d6d6d65e;
+    border: 0;
+    border-radius: 2px;
+    margin-top: 25px;
+    margin-left: 10px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.details button{
+    width: 60px;
+    height: 30px;
+    font-size: 14px;
+    color: #faf8f8;
+    background:#5f5f5f9d;
+    border: 0;
+    border-radius: 2px;
+    margin-top: 25px;
+    margin-left: 10px;
+}
+.details button:hover{
+    box-shadow: #5f5f5f 1px 1px 5px;
+    background:orange;
+    font-size: 16px;
+    transition: ease-in-out .3s;
+}
+
+  
+.homeInputsContainer{
+    margin-top: 10px;
+    margin-left: 60px;
+    margin-right: 60px;
+    display: flex;
+    justify-content: space-between;
+
+}
+.homeInputsContainer div{
+    width: 33%;
+    border-bottom: solid 2px rgba(163, 163, 163, 0.411);
+}
+.homeInputsContainer section{
+    display: flex;
+    flex-wrap: nowrap;
+    margin-bottom: -30px;
+}
+.homeInputsContainer section p{
+    width: 35%;
+    height: 25px;
+    padding-left: 5px;
+    align-items: center;
+    font-size: 20px;
+    border-radius: 2px;
+    color: #5f5f5f;
+    background-color: #25b1e4c2;
+}
+.homeInputsContainer section input:not(.inputMoney input):not(.inputName input){
+    padding-left: 10px;
+    width:70%;
+    height: 25px;
+    font-size: 22px;
+    color: #5f5f5f;
+    background-color: #d6d6d65e;
+    border: 0;
+    border-radius: 2px;
+    margin-top: 20px;
+    margin-left: 10px;
+}
+.homeInputsContainer section input::placeholder{
+    color: rgb(207, 66, 66);
+    opacity: 1;
+    font-size: 16px;
+    text-align: left;
+}
+.homeInputsContainer button{
+    width: 32.8%;
+    height: 30px;
+    font-size: 20px;
+    color: #faf8f8;
+    background:#5f5f5f9d;
+    border: #d6d6d65e 1px solid;
+    border-radius: 2px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    transition: ease-in-out .2s;
+}
+.homeInputsContainer button:hover{
+    box-shadow: #5f5f5f 1px 1px 5px;
+    background:orange;
+    font-size: 23px;
+    transition: ease-in-out .3s;
+}
+
+.inputMoney input{
+    padding-left: 10px;
+    width: 50%;
+    height: 25px;
+    font-size: 22px;
+    color: #5f5f5f;
+    background-color: #d6d6d65e;
+    border: 0;
+    border-radius: 2px;
+    margin-top: 20px;
+    margin-left: 10px;
+    text-align: center;
+}
+.inputMoney h{
+    padding-left: 10px;
+    width: 18%;
+    height: 25px;
+    font-size: 22px;
+    color: #5f5f5f;
+    background-color: #d6d6d65e;
+    border: 0;
+    border-radius: 2px;
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+.inputName input{
+    padding-left: 10px;
+    width: 50%;
+    height: 25px;
+    font-size: 22px;
+    color: #5f5f5f;
+    background-color: #d6d6d65e;
+    border: 0;
+    border-radius: 2px;
+    margin-top: 20px;
+    margin-left: 10px;
+    text-align: center;
+}
+.inputName select{
+    padding-left: 10px;
+    width: 18%;
+    height: 25px;
+    font-size: 16px;
+    color: #5f5f5f;
+    background-color: #d6d6d65e;
+    border: 0;
+    border-radius: 2px;
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+.icons{
+    display: flex;
+    justify-content: space-around;
+    font-size: 50px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 30px;
+    margin-right: 30px;
+    color: #5f5f5f76;
+}
+.icons i{
+    cursor: pointer;
+}
+.selectedIcon{
+    font-size: 60px;
+    color:orange;
+}
+.searchBar{
+    margin-top: 25px;
+    height: 30px;
+}
+
+.tables{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 60px;
+    margin-right: 60px;
+
+}
+.disabled{
+    pointer-events: none;
+    opacity: 0.85;
+  }
+
+.hideItem{
+    display: none;
+}
+
+table{
+    width:100%;
+    table-layout: fixed;
+  }
+  .tb-header{
+    background-color:#25b1e4c2;
+    font-family: 'Times New Roman', Times, serif;
+    width:99%;
+    margin: auto;
+    border-radius: 2px;
+
+   }
+  .tb-content{
+    height: 400px;
+    overflow-x:auto;
+    width:99%;
+    margin: auto;
+    margin-top: 5px;
+  }
+  th{
+    padding: 20px 15px;
+    text-align: left;
+    font-weight: 400;
+    font-size: 20px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #5f5f5f;
+    text-transform: uppercase;
+  }
+  td{
+    background-color:#d6d6d65e;
+    padding: 15px;
+    text-align: left;
+    vertical-align:middle;
+    font-weight: 300;
+    font-size: 16px;
+    color: #5f5f5f;
+    border-right: solid 1px#d6d6d6c2;
+    border-bottom: solid 1px #d6d6d6c2;
+    border-radius: 2px;
+  }
+  .tr:hover{
+    background-color: #c9c9c9;
+  }
+  .tr:hover #deleteButton{
+    display: inline;
+  }
+    
+  .deleteButton{
+    display: none;
+    margin-left: 25px;
+    font-size: 18px;
+    color: rgba(199, 20, 20, 0.779);
+    cursor: pointer;
+}
+  @media(max-width:1650px){
+   
+    .homeInputsContainer section p{    
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+    
+.homeInputsContainer section input:not(.inputMoney input){
+    padding-left: 10px;
+    height: 25px;
+    font-size: 16px;
+    margin-top: 15px;
+}
+.homeInputsContainer section input::placeholder{
+    font-size: 13px;
+}
+.inputMoney input{
+    padding-left: 10px;
+    height: 25px;
+    font-size: 16px;
+    margin-top: 15px;
+}
+.inputMoney h{
+    padding-left: 10px;
+    height: 25px;
+    font-size: 16px;
+    margin-top: 15px;
+}
+.inputName select{
+  margin-top: 15px;
+}
+.homeInputsContainer button{
+    padding-left: 10px;
+    height: 25px;
+    font-size: 18px;
+    margin-top: 15px;
+}
+.homeInputsContainer button:hover{
+    font-size: 20px;
+}
+.details{
+  width: 1800px;
+}
+.details p{
+    font-size: 14px;
+}
+.deleteButton{
+    margin-left: 0;
+    font-size: 16px;
+}
+.selectedFilter{
+  width: 70px;
+}
+  }
+
+  @media(max-width:1361px){
+    .homeContainer{
+        width: 1305px;
+    }
+   
+  }
