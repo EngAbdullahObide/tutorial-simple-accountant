@@ -1,6 +1,6 @@
+import   {sequelize} from '../models';
 var express = require('express');
 var router = express.Router();
-import   {sequelize} from '../models';
 
 /* GET home page. */
 sequelize.sync().then(()=>{

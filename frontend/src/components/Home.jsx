@@ -3,6 +3,7 @@ import axios from '../config/axios';
 import { WALLET_URL, Safe_URL, Expenses_URL } from "../config/urls";
 import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { motion, useMotionValue } from "framer-motion"
 import { faWallet, faMoneyBillWave, faVault, faGear, faTrash } from '@fortawesome/free-solid-svg-icons'
 import './stylesComponents/home.css'
 
@@ -14,12 +15,13 @@ export default function Home() {
 
     const history = useHistory();
 
-  const redirect = () => {
-    history.push('/sign');
-  }
+    const redirect = () => {
+        history.push('/sign');
+    }
     if (!localStorage.getItem('accessToken')) {
         redirect()
     }
+
 
     //get date auto
     const currentDate = () => {
@@ -109,7 +111,7 @@ export default function Home() {
         expenses: '',
         safe: ''
     });
-   //Setting
+    //Setting
     const [addCurrency, setAddCurrency] = useState('');
     const [selectedcurr, setSelectedcurr] = useState('$');
     const [currencys, setCurrencys] = useState(['$', 'IQ']);
@@ -139,6 +141,11 @@ export default function Home() {
     const [filteredSafe, setFilteredSafe] = useState([]);
     const [selectedDateFilter, setSelectedDateFilter] = useState('');
 
+    //motion
+    const [width, setWidth] = React.useState(window.innerWidth);
+    const [motionWallet, setMotionWallet] = useState(0);
+    const [motionExpensess, setMotionExpensess] = useState(0);
+    const [motionSafe, setMotionSafe] = useState(0);
 
     //useEffect Hooks
     useEffect(() => {
@@ -163,6 +170,32 @@ export default function Home() {
         return () => clearTimeout(timer);
     }, [walletAlert, expensesAlert, safeAlert]);
 
+    useEffect(() => {
+        if (!showSett) {
+            hiddSetting();
+        }
+    }, [showSett])
+
+    useEffect(() => {
+        const resizeWindow = () => setWidth(window.innerWidth);
+        window.addEventListener("resize", resizeWindow);
+        return () => {
+            window.removeEventListener("resize", resizeWindow);
+        };
+    }, []);
+
+    useEffect(() => {
+        if (width < 1361) {
+            i1Click();
+        } else {
+            showAll();
+            setMotionWallet(0);
+            setMotionExpensess(0);
+            setMotionSafe(0);
+        }
+    }, [width])
+
+
     //setting
     useEffect(() => {
         if (localStorage.getItem('+currencys')) {
@@ -181,7 +214,7 @@ export default function Home() {
             setSIncomings(JSON.parse(localStorage.getItem('+sIncomings')));
         };
     }, [])
-    
+
     //search
     useEffect(() => {
         searchItems();
@@ -284,9 +317,11 @@ export default function Home() {
                     quantity: '',
                     date: currentDate(),
                 });
-                showAll();
                 sendWallet.current.classList.remove("disabled");
                 _getInfoByID();
+                if (width > 1361) {
+                    showAll();
+                };
             } catch (e) {
                 console.log(e);
                 setServerErrors({ ...serverErrors, wallet: `Error: ${e.response.data.message}` });
@@ -306,9 +341,11 @@ export default function Home() {
                     quantity: '',
                     date: currentDate(),
                 });
-                showAll();
                 sendExpenses.current.classList.remove("disabled");
                 _getInfoByID();
+                if (width > 1361) {
+                    showAll();
+                };
             } catch (e) {
                 console.log(e);
                 setServerErrors({ ...serverErrors, expenses: `Error: ${e.response.data.message}` });
@@ -328,9 +365,11 @@ export default function Home() {
                     quantity: '',
                     date: currentDate(),
                 });
-                showAll();
                 sendSafe.current.classList.remove("disabled");
                 _getInfoByID();
+                if (width > 1361) {
+                    showAll();
+                };
             } catch (e) {
                 console.log(e);
                 setServerErrors({ ...serverErrors, safe: `Error: ${e.response.data.message}` });
@@ -345,7 +384,7 @@ export default function Home() {
         (async () => {
             try {
                 const response = await axios.get(WALLET_URL);
-                setWallet(response.data.reverse().sort((a,b) => new Date(b.date) - new Date(a.date)))
+                setWallet(response.data.reverse().sort((a, b) => new Date(b.date) - new Date(a.date)))
                 setFilteredWallet(response.data);
                 setSelectedDateFilter('')
             } catch (e) {
@@ -358,7 +397,7 @@ export default function Home() {
         (async () => {
             try {
                 const response = await axios.get(Expenses_URL);
-                setExpenses(response.data.reverse().sort((a,b) => new Date(b.date) - new Date(a.date)));
+                setExpenses(response.data.reverse().sort((a, b) => new Date(b.date) - new Date(a.date)));
                 setFilteredExpenses(response.data);
                 setSelectedDateFilter('');
             } catch (e) {
@@ -370,7 +409,7 @@ export default function Home() {
         (async () => {
             try {
                 const response = await axios.get(Safe_URL);
-                setSafe(response.data.reverse().sort((a,b) => new Date(b.date) - new Date(a.date)));
+                setSafe(response.data.reverse().sort((a, b) => new Date(b.date) - new Date(a.date)));
                 setFilteredSafe(response.data);
                 setSelectedDateFilter('');
             } catch (e) {
@@ -470,6 +509,11 @@ export default function Home() {
         table1Ref.current.classList.remove("hideItem");
         table2Ref.current.classList.add("hideItem");
         table3Ref.current.classList.add("hideItem");
+        if (width < 1361) {
+            setMotionWallet(0);
+            setMotionExpensess(1361);
+            setMotionSafe(1361);
+        };
     };
     const i2Click = (e) => {
         icon2Ref.current.classList.add("selectedIcon");
@@ -478,6 +522,11 @@ export default function Home() {
         table2Ref.current.classList.remove("hideItem");
         table1Ref.current.classList.add("hideItem");
         table3Ref.current.classList.add("hideItem");
+        if (width < 1361) {
+            setMotionWallet(1361);
+            setMotionExpensess(0);
+            setMotionSafe(1361);
+        };
     };
     const i3Click = (e) => {
         icon3Ref.current.classList.add("selectedIcon");
@@ -486,6 +535,11 @@ export default function Home() {
         table3Ref.current.classList.remove("hideItem");
         table2Ref.current.classList.add("hideItem");
         table1Ref.current.classList.add("hideItem");
+        if (width < 1361) {
+            setMotionWallet(1361);
+            setMotionExpensess(1361);
+            setMotionSafe(0);
+        };
     };
     const showAll = (e) => {
         icon3Ref.current.classList.remove("selectedIcon");
@@ -631,49 +685,51 @@ export default function Home() {
         iconNameRef.current.classList.remove("nameIconOnClick");
     }
 
+
+
     //Search
-    
+
     const onChangeDateFilter = (value) => {
         setSelectedDateFilter(value.target.value);
     }
     const dateFilter = () => {
-       
-        if(selectedDateFilter === 'Search' && searchInput === ''){
-          setFilteredWallet(wallet);
-          setFilteredExpenses(expenses);
-          setFilteredSafe(safe);
+
+        if (selectedDateFilter === 'Filter' && searchInput === '') {
+            setFilteredWallet(wallet);
+            setFilteredExpenses(expenses);
+            setFilteredSafe(safe);
         }
-        if(selectedDateFilter === 'Current day'){
-            let dateWallet = wallet.filter((item) => new Date(item.date) >  moment().startOf('day').subtract(1,'day'));
-            let dateExpenses = expenses.filter((item) => new Date(item.date) >  moment().startOf('day').subtract(1,'day'));
-            let dateSafe = safe.filter((item) => new Date(item.date) >  moment().startOf('day').subtract(1,'day'));
-            setFilteredWallet(dateWallet);
-            setFilteredExpenses(dateExpenses);
-            setFilteredSafe(dateSafe);
-            setSearchInput('');
-           }
-        if(selectedDateFilter === 'last week'){
-            let dateWallet = wallet.filter((item) => new Date(item.date) >  moment().startOf('day').subtract(1,'week'));
-            let dateExpenses = expenses.filter((item) => new Date(item.date) >  moment().startOf('day').subtract(1,'week'));
-            let dateSafe = safe.filter((item) => new Date(item.date) >  moment().startOf('day').subtract(1,'week'));
+        if (selectedDateFilter === 'Current day') {
+            let dateWallet = wallet.filter((item) => new Date(item.date) > moment().startOf('day').subtract(1, 'day'));
+            let dateExpenses = expenses.filter((item) => new Date(item.date) > moment().startOf('day').subtract(1, 'day'));
+            let dateSafe = safe.filter((item) => new Date(item.date) > moment().startOf('day').subtract(1, 'day'));
             setFilteredWallet(dateWallet);
             setFilteredExpenses(dateExpenses);
             setFilteredSafe(dateSafe);
             setSearchInput('');
         }
-        if(selectedDateFilter === 'last month'){
-            let dateWallet = wallet.filter((item) => new Date(item.date) >  moment().startOf('day').subtract(1,'month'));
-            let dateExpenses = expenses.filter((item) => new Date(item.date) >  moment().startOf('day').subtract(1,'month'));
-            let dateSafe = safe.filter((item) => new Date(item.date) >  moment().startOf('day').subtract(1,'month'));
+        if (selectedDateFilter === 'last week') {
+            let dateWallet = wallet.filter((item) => new Date(item.date) > moment().startOf('day').subtract(1, 'week'));
+            let dateExpenses = expenses.filter((item) => new Date(item.date) > moment().startOf('day').subtract(1, 'week'));
+            let dateSafe = safe.filter((item) => new Date(item.date) > moment().startOf('day').subtract(1, 'week'));
             setFilteredWallet(dateWallet);
             setFilteredExpenses(dateExpenses);
             setFilteredSafe(dateSafe);
             setSearchInput('');
         }
-        if(selectedDateFilter === 'Current year'){
-            let dateWallet = wallet.filter((item) => new Date(item.date) >  moment().startOf('day').subtract(1,'year'));
-            let dateExpenses = expenses.filter((item) => new Date(item.date) >  moment().startOf('day').subtract(1,'year'));
-            let dateSafe = safe.filter((item) => new Date(item.date) >  moment().startOf('day').subtract(1,'year'));
+        if (selectedDateFilter === 'last month') {
+            let dateWallet = wallet.filter((item) => new Date(item.date) > moment().startOf('day').subtract(1, 'month'));
+            let dateExpenses = expenses.filter((item) => new Date(item.date) > moment().startOf('day').subtract(1, 'month'));
+            let dateSafe = safe.filter((item) => new Date(item.date) > moment().startOf('day').subtract(1, 'month'));
+            setFilteredWallet(dateWallet);
+            setFilteredExpenses(dateExpenses);
+            setFilteredSafe(dateSafe);
+            setSearchInput('');
+        }
+        if (selectedDateFilter === 'Current year') {
+            let dateWallet = wallet.filter((item) => new Date(item.date) > moment().startOf('day').subtract(1, 'year'));
+            let dateExpenses = expenses.filter((item) => new Date(item.date) > moment().startOf('day').subtract(1, 'year'));
+            let dateSafe = safe.filter((item) => new Date(item.date) > moment().startOf('day').subtract(1, 'year'));
             setFilteredWallet(dateWallet);
             setFilteredExpenses(dateExpenses);
             setFilteredSafe(dateSafe);
@@ -681,7 +737,7 @@ export default function Home() {
         }
     }
 
-    
+
 
     const searchItems = () => {
         if (searchInput !== '') {
@@ -719,20 +775,29 @@ export default function Home() {
         }
     }
 
-    return (
-        <div className="homeContainer">
-            <header>
-                <div><i ><FontAwesomeIcon ref={iconNameRef} className="nameIcon" icon={faGear} onClick={() => { setShowSett(!showSett); setShowAddCurr(false); iconNameRef.current.classList.remove("nameIconOnClick"); }} /> {userName}</i></div>
-                 {showSetting()} {showAddCurrency()} {showAddwalletIncoming()} {showAddExpensesIncoming()} {showAddSafeIncoming()}
-                <section className="details">
-                    <input className="searchBar" placeholder="Search..." onClick={() => setSelectedDateFilter('Search')} onChange={(value) => setSearchInput(value.target.value)} />
+    //motion
+    const variants = {
+        visible: { opacity: 1 },
+        hidden: { opacity: 0 },
+    }
 
-                    <p>Pocket = {filteredWallet.reduce((prev, curr) => +prev + +curr.quantity, 0) - (filteredExpenses.reduce((prev, curr) => +prev + +curr.quantity, 0) + filteredSafe.reduce((prev, curr) => +prev + +curr.quantity, 0)) } {selectedcurr}</p>
+
+    return (
+        <motion.div className="homeContainer" initial="hidden" animate="visible" variants={variants} >
+            <header>
+                <section className="top">
+                    <div><i ><FontAwesomeIcon ref={iconNameRef} className="nameIcon" icon={faGear} onClick={() => { setShowSett(!showSett); setShowAddCurr(false); iconNameRef.current.classList.remove("nameIconOnClick"); }} /> {userName}</i></div>
+                    {showSetting()} {showAddCurrency()} {showAddwalletIncoming()} {showAddExpensesIncoming()} {showAddSafeIncoming()}
+                    <h1>MY<motion.span initial="hidden" animate="visible" variants={variants} style={{ transition: 'ease-in-out .8s' }} >W</motion.span>ALLET</h1>
+                    <button className="homeButton" onClick={showAll} >Home</button>
+                </section>
+                <section className="details">
+                    <p>Pocket = {filteredWallet.reduce((prev, curr) => +prev + +curr.quantity, 0) - (filteredExpenses.reduce((prev, curr) => +prev + +curr.quantity, 0) + filteredSafe.reduce((prev, curr) => +prev + +curr.quantity, 0))} {selectedcurr}</p>
                     <p>Wallet = {filteredWallet.reduce((prev, curr) => +prev + +curr.quantity, 0)} {selectedcurr}</p>
                     <p>Expenses = {filteredExpenses.reduce((prev, curr) => +prev + +curr.quantity, 0)} {selectedcurr}</p>
                     <p>Safe = {filteredSafe.reduce((prev, curr) => +prev + +curr.quantity, 0)} {selectedcurr}</p>
 
-                    
+
 
                     <select className="selectedCurr" value={selectedcurr} onChange={onChangeCurrency}>
                         <option value={selectedcurr}>"{selectedcurr}"</option>
@@ -741,24 +806,27 @@ export default function Home() {
                         ))}
                     </select>
 
-                    <select className="selectedFilter" value={selectedDateFilter}  onChange={onChangeDateFilter}>
-                        <option value={'Search'}>Search</option>
+
+                    <select className="selectedFilter" value={selectedDateFilter} onChange={onChangeDateFilter}>
+                        <option value={'Filter'}>Filter</option>
                         <option value={'Current day'}>Current day</option>
                         <option value={'last week'}>last week</option>
                         <option value={'last month'}>last month</option>
                         <option value={'Current year'}>Current year</option>
                     </select>
-                    
-                    <button onClick={showAll} >Home</button>
+
+                    <input className="searchBar" placeholder="Search..." onClick={() => setSelectedDateFilter('Search')} onChange={(value) => setSearchInput(value.target.value)} />
+
                 </section>
             </header>
 
             <body onClick={hiddSetting}>
                 <section className="homeInputsContainer">
-                    <div>
+
+                    <motion.div animate={{ x: motionWallet, y: 0, opacity: 1 }} style={{ opacity: 0 }}>
                         <section className="inputName">
                             <p>Incoming name</p>
-                            <input type="text" onChange={(text) => onChangeAddToWallet('name', text)} value={addToWallet.name} placeholder={walletAlert.name.text} />
+                            <input id="inputNameInput" type="text" onChange={(text) => onChangeAddToWallet('name', text)} value={addToWallet.name} placeholder={walletAlert.name.text} />
                             <select value={walletIncoming} onChange={onChangeWIncoming}>
                                 <option value={walletIncoming}>"{walletIncoming}"</option>
                                 {wIncomings.map(item => (
@@ -773,15 +841,16 @@ export default function Home() {
                         </section>
                         <section>
                             <p>Added date</p>
-                            <input type="text" onChange={(text) => onChangeAddToWallet('date', text)} value={addToWallet.date} placeholder={walletAlert.date.text} />
+                            <input id="inputDateInput" type="text" onChange={(text) => onChangeAddToWallet('date', text)} value={addToWallet.date} placeholder={walletAlert.date.text} />
                         </section>
                         <button ref={sendWallet} onClick={() => _sendToWalet()}>Save</button>
                         <p className="signErrors">{serverErrors.wallet}</p>
-                    </div>
-                    <div>
+                    </motion.div>
+
+                    <motion.div animate={{ x: motionExpensess, y: 0, opacity: 1 }} style={{ opacity: 0 }}>
                         <section className="inputName">
                             <p>Incoming name</p>
-                            <input type="text" onChange={(text) => onChangeAddToExpenses('name', text)} value={addToExpenses.name} placeholder={expensesAlert.name.text} />
+                            <input id="inputNameInput" type="text" onChange={(text) => onChangeAddToExpenses('name', text)} value={addToExpenses.name} placeholder={expensesAlert.name.text} />
                             <select value={expensesIncoming} onChange={onChangeEIncoming}>
                                 <option value={expensesIncoming}>"{expensesIncoming}"</option>
                                 {eIncomings.map(item => (
@@ -796,15 +865,16 @@ export default function Home() {
                         </section>
                         <section>
                             <p>Added date</p>
-                            <input type="text" onChange={(text) => onChangeAddToExpenses('date', text)} value={addToExpenses.date} placeholder={expensesAlert.date.text} />
+                            <input id="inputDateInput" type="text" onChange={(text) => onChangeAddToExpenses('date', text)} value={addToExpenses.date} placeholder={expensesAlert.date.text} />
                         </section>
                         <button ref={sendExpenses} onClick={() => _sendToExpenses()}>Save</button>
                         <p className="signErrors">{serverErrors.expenses}</p>
-                    </div>
-                    <div>
+                    </motion.div>
+
+                    <motion.div animate={{ x: motionSafe, y: 0, opacity: 1 }} style={{ opacity: 0 }}>
                         <section className="inputName">
                             <p>Incoming name</p>
-                            <input type="text" onChange={(text) => onChangeAddToSafe('name', text)} value={addToSafe.name} placeholder={safeAlert.name.text} />
+                            <input id="inputNameInput" type="text" onChange={(text) => onChangeAddToSafe('name', text)} value={addToSafe.name} placeholder={safeAlert.name.text} />
                             <select value={safeIncoming} onChange={onChangeSIncoming}>
                                 <option value={safeIncoming}>"{safeIncoming}"</option>
                                 {sIncomings.map(item => (
@@ -819,11 +889,12 @@ export default function Home() {
                         </section>
                         <section>
                             <p>Added date</p>
-                            <input type="text" onChange={(text) => onChangeAddToSafe('date', text)} value={addToSafe.date} placeholder={safeAlert.date.text} />
+                            <input id="inputDateInput" type="text" onChange={(text) => onChangeAddToSafe('date', text)} value={addToSafe.date} placeholder={safeAlert.date.text} />
                         </section>
                         <button ref={sendSafe} onClick={() => _sendToSafe()}>Save</button>
                         <p className="signErrors">{serverErrors.safe}</p>
-                    </div>
+                    </motion.div>
+
                 </section>
 
 
@@ -914,6 +985,6 @@ export default function Home() {
                     </section>
                 </section>
             </body>
-        </div>
+        </motion.div>
     )
 };
