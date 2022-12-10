@@ -544,7 +544,7 @@ table {
 }
 
 .tb-content {
-  height: 400px;
+  height: 350px;
   overflow-x: auto;
   width: 99%;
   margin: auto;
@@ -656,6 +656,12 @@ td {
 }
 
 @media(max-width:1361px) {
+  html,body{
+    position: relative;
+    background: -webkit-linear-gradient(left, #25c481, #25b7c4);
+    background:  #f6f6f6;
+    overflow-x: hidden;
+  }
   .homeContainer header {
     height: auto;
   }
@@ -799,6 +805,10 @@ td {
   #inputDateInput {
     font-size: 16px;
   }
+  .tb-content {
+    height: 290px;
+   
+  }
 }
 
 @media(max-width:700px) {
@@ -839,6 +849,10 @@ td {
 
   #inputDateInput {
     font-size: 16px;
+  }
+  .tb-content {
+    height: 260px;
+
   }
 }
 
@@ -1024,6 +1038,9 @@ td {
     text-align: left;
     font-size: 15px;
   }
+  .tb-content {
+    height: 300px;
+  }
 }
 
 @media(max-width:500px) {
@@ -1202,5 +1219,41 @@ td {
 
   .icons {
     margin-top: 140px;
+  }
+}
+@media(max-width:385px) {
+
+  .homeInputsContainer section p {
+    font-size: 9px;
+    padding-top: 5px;
+  }
+
+  .homeInputsContainer section input {
+    margin-top: 13px;
+    font-size: 9px;
+  }
+
+  #inputNameInput {
+    margin-top: 13px;
+    font-size: 9px;
+  }
+
+  #inputDateInput {
+    margin-top: 13px;
+    font-size: 9px;
+  }
+
+  .homeInputsContainer section input::placeholder {
+    font-size: 8px;
+  }
+
+  .homeInputsContainer button {
+    font-size: 12px;
+    margin-top: 13px;
+    margin-bottom: -10px;
+  }
+
+  .homeInputsContainer button:hover {
+    font-size: 16px;
   }
 }
