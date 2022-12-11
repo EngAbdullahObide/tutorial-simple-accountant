@@ -130,8 +130,7 @@ export default function Sign() {
         setSignInAlert(errors);
         return passed;
       };
-
-
+      
     const _signUp = () => {
         (async () => {
           if (!signUpValidate()) return;
@@ -147,6 +146,7 @@ export default function Sign() {
             localStorage.setItem('accessToken', response.data.accessToken);
             axios.defaults.headers.common = {'Authorization': response.data.token};
             setLoading(false);
+            redirect();
           } catch (e) {
             setLoading(false);
             console.log(e);
@@ -169,6 +169,7 @@ export default function Sign() {
             localStorage.setItem('accessToken', response.data.accessToken);
             axios.defaults.headers.common = {'Authorization': response.data.token};
             setLoading(false);
+            redirect();
           } catch (e) {
             setLoading(false);
             console.log(e);
@@ -205,7 +206,7 @@ export default function Sign() {
                         <input type="password" placeholder="Password" onChange={(text) => changeSignUpValue('password', text)} value={signUpData.password} />
                         <Validate error={signUpAlert.password.isError} text={signUpAlert.password.text} />
                         <br />
-                        <button onClick={_signUp}>Sign Up</button>
+                        <div className="button" onClick={_signUp}>Sign Up</div>
                         <a onClick={onRemoveClick} className="smallScreenSignup">Log in</a>
                         <div className="signLoaderContainer">
                             <Loader loading={isLoading} />
@@ -222,7 +223,7 @@ export default function Sign() {
                         <input type="password" placeholder="Password" onChange={(text) => changeSignInValue('password', text)} value={signInData.password}/>
                         <Validate error={signInAlert.password.isError} text={signInAlert.password.text} />
                         <br/>
-                        <button onClick={_signIn}>Sign In</button>
+                        <div className="button" onClick={_signIn}>Sign In</div>
                         <a onClick={onAddClick} className="smallScreenSignup">Create your account</a>
                         <div className="signLoaderContainer">
                             <Loader loading={isLoading} />
@@ -237,12 +238,12 @@ export default function Sign() {
                         <div class="signOverlayPanel signOverlayLeft">
                             <h1>Welcome Back!</h1>
                             <p>To keep connected with us please login with your personal info</p>
-                            <button onClick={onRemoveClick} class="signGhost" id="signIn">Sign In</button>
+                            <div className="button signGhost" onClick={onRemoveClick} id="signIn">Sign In</div>
                         </div>
                         <div className="signOverlayPanel signOverlayRight">
                             <h1>Hello, Friend!</h1>
                             <p>Enter your personal details and start journey with us</p>
-                            <button onClick={onAddClick} className="signGhost" id="signUp">Sign Up</button>
+                            <div className="button signGhost" onClick={onAddClick}  id="signUp">Sign Up</div>
                         </div>
                     </div>
                 </div>

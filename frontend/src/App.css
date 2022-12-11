@@ -9,8 +9,7 @@
 }
 
 
-html,body{
-  position:relative;
+body{
   background: -webkit-linear-gradient(left, #25c481, #25b7c4);
   background:  #f6f6f6;
   overflow-x: hidden;

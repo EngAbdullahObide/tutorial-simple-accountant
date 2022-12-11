@@ -41,7 +41,7 @@
 	color: #28a2cec2;
 }
 
-.signContainer button {
+.signContainer .button {
 	border-radius: 20px;
 	border: 1px solid #25b1e4c2;
 	background-color: #25b1e4c2;
@@ -53,22 +53,23 @@
 	text-transform: uppercase;
 	transition: transform 80ms ease-in;
 }
-.signContainer button:hover {
+.signContainer .button:hover {
 	border: 1px solid #228db4c2;
 	background-color:#228db4c2;
 	color: #FFFFFF;
 	transition: 0.2s;
+	cursor:pointer;
 }
 
-.signContainer button:active {
+.signContainer .button:active {
 	transform: scale(0.95);
 }
 
-.signContainer button:focus {
+.signContainer .button:focus {
 	outline: none;
 }
 
-.signContainer button.signGhost {
+.signContainer .button.signGhost {
 	background-color: transparent;
 	border-color: #FFFFFF;
 }
@@ -212,7 +213,6 @@
 }
 .signErrors{
 	position: relative;
-	top: 10px;
 	color:rgb(214, 68, 68);
 }
 .smallScreenSignup{

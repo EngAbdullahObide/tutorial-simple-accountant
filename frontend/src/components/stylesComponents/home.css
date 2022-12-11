@@ -107,7 +107,7 @@ header .homeButton:hover {
   font-size: 20px;
 }
 
-header .top div {
+header .top div{
   display: flex;
   margin-left: 55px;
   align-items: center;
@@ -122,6 +122,13 @@ header .top div i {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-style: normal;
   border-bottom: solid 2px orange;
+  z-index: 1;
+}
+
+.homeLoader{
+  position: absolute;
+  margin-top: 25px;
+  margin-left: 20px;
 }
 
 .nameIcon {
@@ -830,7 +837,10 @@ td {
   header .top div i {
     font-size: 25px;
   }
-
+  .homeLoader{
+    margin-top: 25px;
+    margin-left: 0px;
+  }
   .nameIcon {
     font-size: 30px;
   }
@@ -877,7 +887,10 @@ td {
     font-size: 25px;
     margin-top: 40px;
     margin-left: -30px;
-
+  }
+  .homeLoader{
+    margin-top: 25px;
+    margin-left: -40px;
   }
 
   .nameIcon {
@@ -1068,7 +1081,10 @@ td {
     margin-top: 0px;
     font-size: 18px;
   }
-
+  .homeLoader{
+    margin-top: 5px;
+    margin-left: -100px;
+  }
   .nameIcon {
     font-size: 27px;
     margin-right: 4px;
@@ -1222,7 +1238,6 @@ td {
   }
 }
 @media(max-width:385px) {
-
   .homeInputsContainer section p {
     font-size: 9px;
     padding-top: 5px;
@@ -1255,5 +1270,13 @@ td {
 
   .homeInputsContainer button:hover {
     font-size: 16px;
+  }
+}
+
+@media(max-width:350px) {
+  
+  .homeLoader{
+    margin-top: 5px;
+    margin-left: -100px;
   }
 }

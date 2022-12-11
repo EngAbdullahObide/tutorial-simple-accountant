@@ -1,9 +1,10 @@
 import React, { useRef, useState, useEffect } from "react";
 import axios from '../config/axios';
 import { WALLET_URL, Safe_URL, Expenses_URL } from "../config/urls";
+import { Loader } from "./MinorComponents";
 import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { motion, useMotionValue } from "framer-motion"
+import { motion } from "framer-motion"
 import { faWallet, faMoneyBillWave, faVault, faGear, faTrash } from '@fortawesome/free-solid-svg-icons'
 import './stylesComponents/home.css'
 
@@ -146,6 +147,8 @@ export default function Home() {
     const [motionWallet, setMotionWallet] = useState(0);
     const [motionExpensess, setMotionExpensess] = useState(0);
     const [motionSafe, setMotionSafe] = useState(0);
+
+    const [isLoading, setLoading] = useState(false);
 
     //useEffect Hooks
     useEffect(() => {
@@ -420,12 +423,14 @@ export default function Home() {
 
     const _getInfoByID = () => {
         (async () => {
+            setLoading(true);
             try {
                 const response = await axios.get('account/me');
                 _getWalletInfo();
                 _getExpensesInfo();
                 _getSafeInfo();
                 setUserName(response.data.name);
+                setLoading(false);
             } catch (e) {
                 console.log(e);
                 setServerErrors({ ...serverErrors, wallet: `Error: ${e.response.data.message}` });
@@ -786,6 +791,7 @@ export default function Home() {
         <motion.div className="homeContainer" initial="hidden" animate="visible" variants={variants} >
             <header>
                 <section className="top">
+                <i className="homeLoader"><Loader loading={isLoading} /></i>
                     <div><i ><FontAwesomeIcon ref={iconNameRef} className="nameIcon" icon={faGear} onClick={() => { setShowSett(!showSett); setShowAddCurr(false); iconNameRef.current.classList.remove("nameIconOnClick"); }} /> {userName}</i></div>
                     {showSetting()} {showAddCurrency()} {showAddwalletIncoming()} {showAddExpensesIncoming()} {showAddSafeIncoming()}
                     <h1>MY<motion.span initial="hidden" animate="visible" variants={variants} style={{ transition: 'ease-in-out .8s' }} >W</motion.span>ALLET</h1>

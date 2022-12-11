@@ -1,6 +1,5 @@
 import { BrowserRouter, Switch,HashRouter as Router,  Route } from 'react-router-dom';
 import React from 'react';
-import axios from 'axios';
 import Home from './components/Home';
 import Sign from './components/Sign';
 import './App.css';
